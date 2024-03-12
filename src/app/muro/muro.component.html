@@ -1,0 +1,46 @@
+<!-- <div class="feed-container">
+    <h2>Muro Principal</h2>
+    <div class="post-card">
+        @for (post of posts; track $index) {
+      <h3>{{ post.title }}</h3>
+      <p>{{ post.content }}</p>
+    }
+    </div>
+    <div class="new-post-form">
+      <h3>Publicaciones</h3>
+      <input type="text" placeholder="Título" [(ngModel)]="newPostTitle">
+      <textarea placeholder="Contenido" [(ngModel)]="newPostContent"></textarea>
+      <button (click)="'createPost()'">Publicar</button>
+    </div>
+  </div> -->
+  <div class="muro bg-gray-100 p-5">
+    <div class="post bg-white rounded-lg shadow-md mb-5">
+      @for (post of posts; track $index) {
+        <div class="ml-6 post-title text-xl font-semibold py-2">{{ post.title }}</div>
+        <div class="ml-6 mb-4 post-content text-gray-800 mb-2">{{ post.content }}</div>
+        <div class="border-b border-gray-300"></div>
+      }
+    </div>
+  </div>
+
+<div class="fixed inset-0 flex items-center justify-center z-50" (click)="closeModal()">
+  <button (click)="openModal()" class="rounded-md bg-blue-700 px-4 py-2 text-white">Nueva publicación</button>
+    @if (modalOpen) {
+    <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
+    <div class="bg-white rounded-lg p-8 max-w-md relative" (click)="stopPropagation($event)">
+      <h2 class="text-xl font-bold mb-4">Nueva Publicación</h2>
+      <form [formGroup]="postForm">
+        <div>
+          <h4 class="font-bold">Título</h4>
+          <input class="border border-gray mb-2 w-full" type="text" formControlName="title">
+          <textarea class="border border-gray w-full" formControlName="content" cols="30" rows="10"></textarea>
+        </div>
+        <div class="flex justify-between">
+          <button (click)="closeModal()" class="border border-blue-700 px-4 py-2 mr-2">Cancelar</button>
+          <button (click)="createPost()" class="bg-blue-700 text-white px-4 py-2">Publicar</button>
+        </div>
+      </form>
+      <!-- Contenido de la modal -->
+    </div>
+    }
+  </div>
